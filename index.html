@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>InterviewEcho — spoken interview practice coach</title>
+<meta name="description" content="Practice interview answers out loud. InterviewEcho asks a question, records your answer, and flags filler words, pace, pauses, hedges and STAR structure — all in your browser.">
+<meta name="theme-color" content="#2e1065">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main>
+  <header class="top">
+    <div><h1>InterviewEcho</h1>
+    <p class="sub">Hear a question, answer out loud, and get instant feedback on filler words, pace, pauses, hedging and STAR structure. Runs in your browser with no account.</p></div>
+  </header>
+  <div id="support" class="notice"></div>
+
+  <section class="card grid-settings">
+    <label class="lbl">Question bank<select id="bank"></select></label>
+    <label class="lbl">Voice<select id="voice"></select></label>
+    <label class="lbl">Rate <span id="rateVal">1.0</span><input id="rate" type="range" min="0.6" max="1.4" step="0.1" value="1"></label>
+    <label class="lbl">Answer timer<select id="timerSel"><option value="60">1 min</option><option value="90">1.5 min</option><option value="120" selected>2 min</option><option value="180">3 min</option><option value="300">5 min</option></select></label>
+  </section>
+
+  <section class="card">
+    <div class="qhead"><span id="qMeta" class="pill">General · 1/10</span>
+      <div class="row"><button id="prevQ" class="ghost">◀ Prev</button><button id="nextQ" class="ghost">Next ▶</button><button id="randQ" class="ghost">🎲 Random</button></div></div>
+    <p id="question" class="question">Tell me about yourself.</p>
+    <div class="row">
+      <button id="askBtn">🔊 Ask me</button>
+      <button id="recBtn" class="primary">● Start answer</button>
+      <span id="timer" class="timer">2:00</span>
+    </div>
+    <div id="live" class="live muted">Your words will appear here as you speak.</div>
+    <audio id="playback" controls hidden></audio>
+  </section>
+
+  <details class="card" id="typedBox">
+    <summary><strong>No mic? Type or paste a transcript</strong> <span class="muted small">— still get the full analysis</span></summary>
+    <textarea id="typed" rows="5" placeholder="Paste what you said…"></textarea>
+    <div class="row"><label class="lbl inline">Duration (seconds) <input id="typedDur" type="number" min="1" value="60"></label><button id="analyzeTyped" class="primary">Analyze</button></div>
+  </details>
+
+  <section class="card" id="results" hidden>
+    <div class="reshead"><div class="score" id="score">0</div><div><h2>Your answer</h2><p id="summary" class="muted small"></p></div></div>
+    <div class="stats" id="stats"></div>
+    <h2>Tips</h2><ol id="tips" class="tips"></ol>
+    <h2>Transcript <span class="muted small">(<mark class="filler">filler</mark> <mark class="hedge">hedge</mark>)</span></h2>
+    <div id="transcript" class="transcript"></div>
+    <div class="row"><button id="exportOne" class="ghost">⬇ Export this answer (.md)</button><button id="retry" class="ghost">↻ Try again</button></div>
+  </section>
+
+  <section class="card">
+    <h2>Progress</h2>
+    <div class="trend"><div><span class="lbl">Filler rate per 100 words</span><svg id="trendFiller" viewBox="0 0 300 70"></svg></div>
+      <div><span class="lbl">Words per minute (band 120–160)</span><svg id="trendWpm" viewBox="0 0 300 70"></svg></div></div>
+    <h2>Best answers</h2><ul id="best" class="list"></ul>
+    <h2>History</h2><ul id="history" class="list"></ul>
+    <div class="row"><button id="exportAll" class="ghost">⬇ Export all (.md)</button><button id="clearHist" class="ghost danger">Clear history</button></div>
+  </section>
+
+  <section class="card">
+    <h2>Custom questions</h2>
+    <div class="row"><input id="customQ" placeholder="Add your own question…"><button id="addQ">Add</button></div>
+    <ul id="customList" class="list"></ul>
+  </section>
+
+  <section class="card small muted">
+    <strong>Privacy:</strong> In Chrome and Edge, speech recognition is done by the browser's speech service, which may send your audio to the browser vendor for processing. InterviewEcho has no server: your recordings stay in this tab, and history and custom questions are saved only in this browser (localStorage). Typed transcripts never leave your device.
+  </section>
+</main>
+<footer class="small muted">MIT licensed · <a href="https://github.com/shaikbasha1437/interviewecho">Source on GitHub</a></footer>
+<script src="analysis.js"></script>
+<script src="questions.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

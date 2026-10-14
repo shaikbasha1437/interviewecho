@@ -1,0 +1,11 @@
+{
+  "name": "InterviewEcho",
+  "short_name": "InterviewEcho",
+  "description": "Spoken interview practice: answer out loud and get feedback on fillers, pace, pauses and STAR structure.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0b0716",
+  "theme_color": "#2e1065",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}
